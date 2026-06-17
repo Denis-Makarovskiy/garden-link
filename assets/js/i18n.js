@@ -123,7 +123,7 @@
     });
     document.querySelectorAll('[data-preview]').forEach(function (img) {
       var doc = img.getAttribute('data-preview');
-      img.setAttribute('src', 'assets/img/cover-' + doc + '-' + lang + '.jpg');
+      img.setAttribute('src', 'assets/img/full-' + doc + '-' + lang + '.jpg');
     });
 
     document.querySelectorAll('[data-setlang]').forEach(function (b) {

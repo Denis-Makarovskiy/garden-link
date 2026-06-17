@@ -36,4 +36,4 @@ p{font-size:13.5px;}
 .note{font-size:12px;color:#6a7a84;font-style:italic;margin-top:6px;}
 .contacts{margin-top:14px;text-align:center;border-top:2px solid var(--sage);padding-top:18px;page-break-inside:avoid;}
 .contacts .tag{font-family:'Lora',serif;font-style:italic;color:var(--sage);margin-top:8px;}
-.draft{position:fixed;top:6mm;right:0;font-size:9px;letter-spacing:.18em;color:#b4ab9c;text-transform:uppercase;}
+.draft{display:none;}

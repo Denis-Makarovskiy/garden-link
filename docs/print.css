@@ -1,0 +1,39 @@
+/* Общий стиль печатных документов (черновые переводы) — по брендбуку */
+@page { size: A4; margin: 18mm 16mm; }
+* { box-sizing: border-box; }
+:root{
+  --sage:#999B84; --sand:#E8E3D9; --sky:#B3C4D5; --ocean:#3C5361; --terra:#A85E45;
+  --line:rgba(60,83,97,.18);
+}
+html,body{margin:0;padding:0;color:var(--ocean);font-family:'Manrope',-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55;}
+h1,h2,h3{font-family:'Lora',Georgia,serif;color:var(--ocean);font-weight:600;}
+.cover{ text-align:center; padding:46mm 0 0; page-break-after:always; }
+.wordmark{font-family:'Playfair Display',Georgia,serif;font-size:40px;letter-spacing:.5px;color:var(--ocean);margin:0;}
+.eyebrow{text-transform:uppercase;letter-spacing:.28em;font-size:11px;color:var(--sage);margin:10px 0 0;}
+.cover .lede{max-width:120mm;margin:30px auto 0;font-size:15px;color:#48555e;}
+.cover .tag{font-family:'Lora',serif;font-style:italic;color:var(--sage);font-size:20px;margin-top:34px;}
+section{page-break-inside:avoid;margin:0 0 22px;}
+.kicker{text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:var(--sage);}
+h2{font-size:24px;margin:4px 0 14px;}
+h3{font-size:17px;margin:18px 0 6px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;}
+ul{margin:6px 0 0;padding-left:18px;} li{margin:4px 0;font-size:13.5px;}
+p{font-size:13.5px;}
+.lead{font-size:13.5px;color:#52606a;margin:0 0 10px;}
+.steps{counter-reset:s;}
+.step{display:flex;gap:14px;padding:9px 0;border-top:1px solid var(--line);}
+.step:before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:'Lora',serif;color:var(--sage);font-size:18px;min-width:30px;}
+.step b{display:block;font-family:'Lora',serif;font-weight:600;font-size:15px;}
+.step span{font-size:13px;color:#52606a;}
+.prog{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:#fff;page-break-inside:avoid;margin-bottom:12px;}
+.prog .name{font-family:'Playfair Display',serif;font-size:18px;color:var(--ocean);}
+.prog .sub{color:var(--terra);font-size:12px;font-weight:600;margin:2px 0 7px;text-transform:uppercase;letter-spacing:.05em;}
+.prog p{font-size:13px;margin:0;color:#52606a;}
+.pricerow{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:8px 0;font-size:14px;}
+.pricerow b{font-family:'Lora',serif;font-weight:600;}
+.pricerow .desc{color:#6a7a84;font-size:12px;}
+.price{color:var(--terra);font-weight:700;white-space:nowrap;}
+.note{font-size:12px;color:#6a7a84;font-style:italic;margin-top:6px;}
+.contacts{margin-top:14px;text-align:center;border-top:2px solid var(--sage);padding-top:18px;page-break-inside:avoid;}
+.contacts .tag{font-family:'Lora',serif;font-style:italic;color:var(--sage);margin-top:8px;}
+.draft{position:fixed;top:6mm;right:0;font-size:9px;letter-spacing:.18em;color:#b4ab9c;text-transform:uppercase;}

@@ -1,0 +1,67 @@
+/* ============================================================
+   Garden Recovery — Brand tokens (распаковано из брендбука)
+   Источник: «Копия BB Garden Recovery.pdf», раздел «Айдентика».
+   Подключать на новых страницах: <link rel="stylesheet" href="/brand/brand-tokens.css">
+   ============================================================ */
+:root {
+  /* --- Палитра (5 брендовых цветов) --- */
+  --gr-sage:        #999B84; /* Sage Green — основной/бренд. Pantone 5773 C */
+  --gr-sand:        #E8E3D9; /* Warm Sand — фон. Pantone 7499 C */
+  --gr-sky:         #B3C4D5; /* Soft Sky — вторичный акцент. Pantone 544 C */
+  --gr-ocean:       #3C5361; /* Deep Ocean — текст/тёмный UI. Pantone 5405 C */
+  --gr-terracotta:  #A85E45; /* Terracotta — CTA/действие. Pantone 471 C */
+  --gr-black:       #000000; /* инверсный фон логотипа */
+  --gr-white:       #FFFFFF;
+
+  /* --- Производные оттенки (для hover/border/disabled) --- */
+  --gr-sage-700:    #7c7e69;
+  --gr-sand-200:    #f1eee7;
+  --gr-ocean-700:   #2b3d48;
+  --gr-terracotta-600: #8f4d38;
+
+  /* --- Семантические роли --- */
+  --gr-bg:          var(--gr-sand);
+  --gr-surface:     var(--gr-white);
+  --gr-text:        var(--gr-ocean);
+  --gr-text-muted:  #6a7a84;
+  --gr-heading:     var(--gr-ocean);
+  --gr-cta:         var(--gr-terracotta);
+  --gr-cta-hover:   var(--gr-terracotta-600);
+  --gr-line:        rgba(60,83,97,.18);
+
+  /* --- Типографика (Google Fonts) --- */
+  --gr-font-logo:    'Playfair Display', Georgia, serif; /* ТОЛЬКО логотип */
+  --gr-font-heading: 'Lora', Georgia, serif;             /* заголовки/акценты */
+  --gr-font-body:    'Manrope', system-ui, sans-serif;   /* основной текст/UI */
+  --gr-eyebrow-spacing: .22em; /* надзаголовки CAPS — широкий трекинг */
+
+  /* --- Геометрия --- */
+  --gr-radius:      14px;
+  --gr-radius-sm:   10px;
+  --gr-maxw:        680px;
+  --gr-gap:         clamp(16px, 4vw, 28px);
+}
+
+/* Базовые типографические классы бренда */
+.gr-eyebrow {
+  font-family: var(--gr-font-body);
+  text-transform: uppercase;
+  letter-spacing: var(--gr-eyebrow-spacing);
+  font-size: 12px;
+  color: var(--gr-sage);
+}
+.gr-h1 { font-family: var(--gr-font-heading); font-weight: 600; color: var(--gr-heading); line-height: 1.15; }
+.gr-body { font-family: var(--gr-font-body); font-weight: 400; color: var(--gr-text); line-height: 1.6; }
+
+/* Кнопка-CTA по брендбуку (терракота = «точка действия») */
+.gr-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--gr-font-body); font-weight: 600; font-size: 16px;
+  padding: 14px 26px; border-radius: var(--gr-radius-sm);
+  background: var(--gr-cta); color: var(--gr-white);
+  text-decoration: none; border: 0; cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+.gr-btn:hover { background: var(--gr-cta-hover); transform: translateY(-1px); }
+.gr-btn--ghost { background: transparent; color: var(--gr-ocean); box-shadow: inset 0 0 0 1px var(--gr-line); }
+.gr-btn--ghost:hover { background: var(--gr-sand-200); }

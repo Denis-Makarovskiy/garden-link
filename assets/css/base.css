@@ -13,16 +13,18 @@ body {
 
 .wrap { max-width: var(--gr-maxw); margin: 0 auto; padding: 22px 22px 64px; }
 
-/* Шапка */
-.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+/* Шапка: переключатель языков по центру, «назад» слева (без широкого зазора) */
+.top { position: relative; display: flex; align-items: center; justify-content: center; min-height: 26px; }
 .back {
-  display: inline-flex; align-items: center; gap: 7px;
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  display: inline-flex; align-items: center; gap: 6px;
   font-size: 14px; color: var(--gr-text-muted); text-decoration: none;
 }
 .back:hover { color: var(--gr-ocean); }
 .back svg { width: 16px; height: 16px; }
 
-.lang-switch { display: flex; gap: 12px; font-size: 13px; letter-spacing: .06em; }
+.lang-switch { display: flex; gap: 14px; font-size: 13px; letter-spacing: .06em; }
+@media (max-width: 400px) { .back span { display: none; } }
 .lang-switch a { color: var(--gr-sage); text-decoration: none; opacity: .55; padding: 2px 3px; transition: opacity .15s ease; }
 .lang-switch a:hover { opacity: 1; }
 .lang-switch a.is-active { opacity: 1; font-weight: 700; border-bottom: 1.5px solid var(--gr-sage); }

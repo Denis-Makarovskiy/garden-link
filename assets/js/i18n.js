@@ -17,7 +17,7 @@
     // --- Навигация линк-страницы ---
     'nav.site':         { ru: 'Сайт', en: 'Website', me: 'Sajt', de: 'Website', sq: 'Faqja' },
     'nav.presentation': { ru: 'Презентация', en: 'Presentation', me: 'Prezentacija', de: 'Präsentation', sq: 'Prezantimi' },
-    'nav.programs':     { ru: 'Программы', en: 'Programs', me: 'Programi', de: 'Programme', sq: 'Programet' },
+    'nav.programs':     { ru: 'Программы и цены', en: 'Programs & pricing', me: 'Programi i cijene', de: 'Programme und Preise', sq: 'Programet dhe çmimet' },
     'nav.services':     { ru: 'Дополнительные услуги', en: 'Additional services', me: 'Dodatne usluge', de: 'Zusätzliche Leistungen', sq: 'Shërbime shtesë' },
     'contacts.title':   { ru: 'Контакты', en: 'Contacts', me: 'Kontakt', de: 'Kontakt', sq: 'Kontakt' },
 

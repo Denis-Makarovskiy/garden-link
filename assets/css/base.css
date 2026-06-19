@@ -13,8 +13,8 @@ body {
 
 .wrap { max-width: var(--gr-maxw); margin: 0 auto; padding: 22px 22px 64px; }
 
-/* Шапка: «На главную» слева, переключатель языков прижат к правому краю */
-.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 26px; }
+/* Шапка: «На главную» и переключатель языков — единый блок с небольшим зазором, по центру */
+.top { display: flex; align-items: center; justify-content: center; gap: 20px; min-height: 26px; }
 .back {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 14px; color: var(--gr-text-muted); text-decoration: none;

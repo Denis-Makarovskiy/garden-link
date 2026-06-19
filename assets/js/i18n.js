@@ -171,6 +171,7 @@
       if (!f) return;
       var h = FRAME_H[f.getAttribute('data-htmlview')] || 9000;
       var s = Math.min(1, box.clientWidth / FRAME_W);
+      f.setAttribute('scrolling', 'no'); // окно ровно под документ — без внутреннего скролла
       f.style.display = 'block';
       f.style.width = FRAME_W + 'px';
       f.style.height = h + 'px';

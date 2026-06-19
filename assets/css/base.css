@@ -93,9 +93,10 @@ h1 {
 .pbtn:hover { background: var(--gr-sage-700); transform: translateY(-1px); }
 .pbtn svg { width: 18px; height: 18px; opacity: .8; flex: 0 0 auto; }
 
-/* Единый подвал «Контакты» — общий для всех страниц (как на главной) */
+/* Единый подвал «Контакты» — плашка по ширине контента (не во всю ширину) */
 .contacts {
-  margin: 56px -22px -64px; padding: 34px 24px 40px;
+  max-width: 540px; margin: 56px auto 0; padding: 34px 24px 40px;
+  border-radius: var(--gr-radius);
   background: #e3ded2; color: var(--gr-text); text-align: center;
 }
 .contacts-title {

@@ -13,10 +13,9 @@ body {
 
 .wrap { max-width: var(--gr-maxw); margin: 0 auto; padding: 22px 22px 64px; }
 
-/* Шапка: переключатель языков по центру, «назад» слева (без широкого зазора) */
-.top { position: relative; display: flex; align-items: center; justify-content: center; min-height: 26px; }
+/* Шапка: «На главную» слева, переключатель языков прижат к правому краю */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 26px; }
 .back {
-  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 14px; color: var(--gr-text-muted); text-decoration: none;
 }

@@ -5,11 +5,11 @@
   var LANGS = ['ru', 'en', 'me', 'de', 'sq'];
   var HTMLLANG = { ru: 'ru', en: 'en', me: 'sr-ME', de: 'de', sq: 'sq' };
 
-  // Высота исходных Figma-фреймов (ширина макета — 393px). Для RU-превью
-  // встраиваем живую HTML-вёрстку (iframe) и масштабируем под ширину колонки.
+  // Высота превью = до начала футера-контактов самого документа (он дублирует
+  // сквозной футер «Контакты» страницы, поэтому обрезаем; бокс с overflow:hidden).
   var FRAME_H = {
-    presentation: 10791, programs: 21273, services: 10048,
-    'partner-bigtech': 18870, 'partner-medical': 17682, 'partner-commercial': 17019
+    presentation: 10167, programs: 20307, services: 9424,
+    'partner-bigtech': 18246, 'partner-medical': 17058, 'partner-commercial': 16400
   };
   var FRAME_W = 393;
 

@@ -5,6 +5,14 @@
   var LANGS = ['ru', 'en', 'me', 'de', 'sq'];
   var HTMLLANG = { ru: 'ru', en: 'en', me: 'sr-ME', de: 'de', sq: 'sq' };
 
+  // Высота исходных Figma-фреймов (ширина макета — 393px). Для RU-превью
+  // встраиваем живую HTML-вёрстку (iframe) и масштабируем под ширину колонки.
+  var FRAME_H = {
+    presentation: 10791, programs: 21273, services: 10048,
+    'partner-bigtech': 18870, 'partner-medical': 17682, 'partner-commercial': 17019
+  };
+  var FRAME_W = 393;
+
   var I18N = {
     // --- Навигация линк-страницы ---
     'nav.site':         { ru: 'Сайт', en: 'Website', me: 'Sajt', de: 'Website', sq: 'Faqja' },
@@ -126,8 +134,49 @@
       img.setAttribute('src', 'assets/img/full-' + doc + '-' + lang + '.jpg');
     });
 
+    // RU: живой HTML-макет (iframe) вместо картинки-превью. Остальные языки — картинка.
+    document.querySelectorAll('[data-htmlview]').forEach(function (f) {
+      var doc = f.getAttribute('data-htmlview');
+      var box = f.parentNode;
+      if (!box.classList || !box.classList.contains('htmlview-box')) {
+        var w = document.createElement('div');
+        w.className = 'htmlview-box';
+        f.parentNode.insertBefore(w, f);
+        w.appendChild(f);
+        box = w;
+      }
+      var card = box.closest('.preview');
+      var img = card ? card.querySelector('.imgview') : null;
+      if (lang === 'ru') {
+        if (!f.getAttribute('src')) f.setAttribute('src', 'p/' + doc + '/index.html');
+        box.style.display = 'block';
+        if (img) img.style.display = 'none';
+      } else {
+        box.style.display = 'none';
+        if (img) img.style.display = '';
+      }
+    });
+    fitFrames();
+
     document.querySelectorAll('[data-setlang]').forEach(function (b) {
       b.classList.toggle('is-active', b.getAttribute('data-setlang') === lang);
+    });
+  }
+
+  // Масштабируем 393px-макет под фактическую ширину колонки превью.
+  function fitFrames() {
+    document.querySelectorAll('.htmlview-box').forEach(function (box) {
+      if (box.style.display === 'none') return;
+      var f = box.querySelector('[data-htmlview]');
+      if (!f) return;
+      var h = FRAME_H[f.getAttribute('data-htmlview')] || 9000;
+      var s = Math.min(1, box.clientWidth / FRAME_W);
+      f.style.display = 'block';
+      f.style.width = FRAME_W + 'px';
+      f.style.height = h + 'px';
+      f.style.transformOrigin = 'top left';
+      f.style.transform = 'scale(' + s + ')';
+      box.style.height = Math.round(h * s) + 'px';
     });
   }
 
@@ -142,6 +191,10 @@
         url.searchParams.set('lang', l);
         history.replaceState(null, '', url);
       });
+    });
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt); rt = setTimeout(fitFrames, 150);
     });
   }
 

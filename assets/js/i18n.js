@@ -5,13 +5,16 @@
   var LANGS = ['ru', 'en', 'me', 'de', 'sq'];
   var HTMLLANG = { ru: 'ru', en: 'en', me: 'sr-ME', de: 'de', sq: 'sq' };
 
-  // Высота превью = до начала футера-контактов самого документа (он дублирует
-  // сквозной футер «Контакты» страницы, поэтому обрезаем; бокс с overflow:hidden).
+  // В превью показываем только ТЕЛО документа: сверху срезаем титульную обложку
+  // (оливковый слайд 393×852), снизу — собственный футер-контакты документа
+  // (дублирует сквозной футер «Контакты» страницы). Бокс — overflow:hidden.
+  // FRAME_H[doc] = y начала контактов = нижняя граница тела.
   var FRAME_H = {
     presentation: 10167, programs: 20307, services: 9424,
     'partner-bigtech': 18246, 'partner-medical': 17058, 'partner-commercial': 16400
   };
   var FRAME_W = 393;
+  var FRAME_TOP = 852; // высота титульной обложки сверху (одинакова во всех документах)
 
   var I18N = {
     // --- Навигация линк-страницы ---
@@ -169,15 +172,16 @@
       if (box.style.display === 'none') return;
       var f = box.querySelector('[data-htmlview]');
       if (!f) return;
-      var h = FRAME_H[f.getAttribute('data-htmlview')] || 9000;
+      var bottom = FRAME_H[f.getAttribute('data-htmlview')] || 9000; // низ тела (до контактов)
+      var top = FRAME_TOP;                                            // верх тела (после обложки)
       var s = Math.min(1, box.clientWidth / FRAME_W);
       f.setAttribute('scrolling', 'no'); // окно ровно под документ — без внутреннего скролла
       f.style.display = 'block';
       f.style.width = FRAME_W + 'px';
-      f.style.height = h + 'px';
+      f.style.height = bottom + 'px';
       f.style.transformOrigin = 'top left';
-      f.style.transform = 'scale(' + s + ')';
-      box.style.height = Math.round(h * s) + 'px';
+      f.style.transform = 'translateY(' + (-top * s) + 'px) scale(' + s + ')'; // сдвиг вверх — срезаем обложку
+      box.style.height = Math.round((bottom - top) * s) + 'px';
     });
   }
 

@@ -48,9 +48,14 @@ p{margin:0}img{display:block;max-width:100%}</style></head>
 // т.е. когда рамка в источнике явно мала под текст (заголовок налезает на соседа). Обычные
 // многострочные блоки (лёгкое превышение) не трогаем. Пол — 0.45x исходного (не крошечный).
 // line-height безразмерный -> при ужатии межстрочье уменьшается и текст реально влезает.
+// Идемпотентно: исходный кегль в data-fs0, сброс перед замером -> ранний прогон по запасному
+// шрифту (до загрузки Lora) самокорректируется на fonts.ready (иначе на медленном инете
+// заголовок остаётся ужатым).
 function fit(){var e=document.querySelectorAll('p.t');for(var i=0;i<e.length;i++){var p=e[i],b=p.parentNode;if(!b)continue;
-var bw=b.clientWidth,bh=b.clientHeight,o=parseFloat(getComputedStyle(p).fontSize)||16,fs=o,g=0,sev=o>=30&&p.scrollHeight>bh*1.6;
+if(!p.dataset.fs0)p.dataset.fs0=parseFloat(getComputedStyle(p).fontSize)||16;
+p.style.fontSize=p.dataset.fs0+'px';
+var bw=b.clientWidth,bh=b.clientHeight,o=+p.dataset.fs0,fs=o,g=0,sev=o>=30&&p.scrollHeight>bh*1.6;
 while((p.scrollWidth>bw+1||(sev&&p.scrollHeight>bh+3))&&fs>o*0.45&&g<40){fs*=0.94;p.style.fontSize=fs+'px';g++;}}}
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fit);}
-window.addEventListener('load',fit);setTimeout(fit,1400);})();</script>
+window.addEventListener('load',fit);setTimeout(fit,1500);setTimeout(fit,4000);})();</script>
 </body></html>

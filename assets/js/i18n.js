@@ -6,12 +6,15 @@
   var HTMLLANG = { ru: 'ru', en: 'en', me: 'sr-ME', de: 'de', sq: 'sq' };
 
   // В превью показываем только ТЕЛО документа: сверху срезаем титульную обложку
-  // (оливковый слайд 393×852), снизу — собственный футер-контакты документа
-  // (дублирует сквозной футер «Контакты» страницы). Бокс — overflow:hidden.
-  // FRAME_H[doc] = y начала контактов = нижняя граница тела.
+  // (оливковый слайд 393×852), снизу — собственный футер-контакты документа.
+  // FRAME_H[doc][lang] = y начала контактов = нижняя граница тела (своя на каждый язык).
   var FRAME_H = {
-    presentation: 10167, programs: 20307, services: 9424,
-    'partner-bigtech': 18246, 'partner-medical': 17058, 'partner-commercial': 16400
+    presentation:         { ru:10468, en:10055, me:10109, de:10661, sq:10222 },
+    programs:             { ru:20590, en:19390, me:19632, de:20321, sq:19793 },
+    services:             { ru:9394,  en:9131,  me:9087,  de:9335,  sq:9212  },
+    'partner-bigtech':    { ru:18109, en:17464, me:17338, de:18115, sq:17670 },
+    'partner-medical':    { ru:16908, en:16329, me:16261, de:16885, sq:16372 },
+    'partner-commercial': { ru:16187, en:15825, me:15555, de:16184, sq:15843 }
   };
   var FRAME_W = 393;
   var FRAME_TOP = 852; // высота титульной обложки сверху (одинакова во всех документах)
@@ -137,7 +140,7 @@
       img.setAttribute('src', 'assets/img/full-' + doc + '-' + lang + '.jpg');
     });
 
-    // RU: живой HTML-макет (iframe) вместо картинки-превью. Остальные языки — картинка.
+    // Живой HTML-макет (iframe) на ВСЕХ языках: p/<doc>/<lang>/index.html.
     document.querySelectorAll('[data-htmlview]').forEach(function (f) {
       var doc = f.getAttribute('data-htmlview');
       var box = f.parentNode;
@@ -150,14 +153,11 @@
       }
       var card = box.closest('.preview');
       var img = card ? card.querySelector('.imgview') : null;
-      if (lang === 'ru') {
-        if (!f.getAttribute('src')) f.setAttribute('src', 'p/' + doc + '/index.html');
-        box.style.display = 'block';
-        if (img) img.style.display = 'none';
-      } else {
-        box.style.display = 'none';
-        if (img) img.style.display = '';
-      }
+      var src = 'p/' + doc + '/' + lang + '/index.html';
+      f.dataset.lang = lang;
+      if (f.getAttribute('src') !== src) f.setAttribute('src', src);
+      box.style.display = 'block';
+      if (img) img.style.display = 'none';
     });
     fitFrames();
 
@@ -172,7 +172,8 @@
       if (box.style.display === 'none') return;
       var f = box.querySelector('[data-htmlview]');
       if (!f) return;
-      var bottom = FRAME_H[f.getAttribute('data-htmlview')] || 9000; // низ тела (до контактов)
+      var fh = FRAME_H[f.getAttribute('data-htmlview')] || {};
+      var bottom = fh[f.dataset.lang] || fh.ru || 9000; // низ тела (до контактов), свой на язык
       var top = FRAME_TOP;                                            // верх тела (после обложки)
       var s = Math.min(1, box.clientWidth / FRAME_W);
       f.setAttribute('scrolling', 'no'); // окно ровно под документ — без внутреннего скролла

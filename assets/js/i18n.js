@@ -26,6 +26,7 @@
     'nav.programs':     { ru: 'Программы и цены', en: 'Programs & pricing', me: 'Programi i cijene', de: 'Programme und Preise', sq: 'Programet dhe çmimet' },
     'nav.services':     { ru: 'Дополнительные услуги', en: 'Additional services', me: 'Dodatne usluge', de: 'Zusätzliche Leistungen', sq: 'Shërbime shtesë' },
     'contacts.title':   { ru: 'Контакты', en: 'Contacts', me: 'Kontakt', de: 'Kontakt', sq: 'Kontakt' },
+    'link.subtitle':    { ru: 'Частная медицинская резиденция на побережье Адриатического моря', en: 'Private medical residence on the Adriatic coast', me: 'Privatna medicinska rezidencija na obali Jadranskog mora', de: 'Private medizinische Residenz an der Adriaküste', sq: 'Rezidencë private mjekësore në bregdetin e Adriatikut' },
 
     // --- Партнёрская мини-страница ---
     'partners.title':   { ru: 'Партнёрам', en: 'For partners', me: 'Za partnere', de: 'Für Partner', sq: 'Për partnerët' },

@@ -12,7 +12,7 @@
     presentation:         { ru:10468, en:10055, me:10109, de:10661, sq:10222 },
     programs:             { ru:20590, en:19390, me:19632, de:20321, sq:19793 },
     services:             { ru:9394,  en:9131,  me:9087,  de:9335,  sq:9212  },
-    'partner-bigtech':    { ru:18109, en:17464, me:17338, de:18115, sq:17670 },
+    'partner-bigtech':    { ru:18109, en:17464, me:17338, de:18115, sq:17587 },
     'partner-medical':    { ru:16908, en:16329, me:16261, de:16885, sq:16372 },
     'partner-commercial': { ru:16187, en:15825, me:15555, de:16184, sq:15843 }
   };
